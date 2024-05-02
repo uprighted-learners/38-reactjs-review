@@ -5,6 +5,8 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Admin from './pages/Admin'
+import RequireAuth from './components/RequireAuth'
 
 export default function App() {
     return (
@@ -16,6 +18,11 @@ export default function App() {
                     <Route path="/about" element={<About />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
+                    <Route path="/admin" element={
+                        <RequireAuth>
+                            <Admin />
+                        </RequireAuth>
+                    } />
                 </Routes>
             </div>
         </Router>
