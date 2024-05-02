@@ -12,7 +12,7 @@ function Home() {
 
     const fetchPosts = async () => {
         try {
-            const response = await fetch(`https://three2-mongodb-review.onrender.com/api/blogposts`);
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/blogposts`);
             const data = await response.json();
             setPosts(data);
         } catch (error) {
@@ -23,7 +23,7 @@ function Home() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`https://three2-mongodb-review.onrender.com/api/blogposts`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/blogposts`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

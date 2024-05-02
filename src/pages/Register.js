@@ -9,7 +9,7 @@ export default function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await fetch(`https://three2-mongodb-review.onrender.com/api/users`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -19,10 +19,14 @@ export default function Register() {
                     password
                 })
             })
-            setUsername('')
-            setPassword('')
-            alert('User created successfully!')
-            navigate('/login')
+            if (response.ok) {
+                setUsername('')
+                setPassword('')
+                alert('User created successfully!')
+                navigate('/login')
+            } else {
+                alert('Failed to create user')
+            }
         } catch (error) {
             alert(error.message)
         }
